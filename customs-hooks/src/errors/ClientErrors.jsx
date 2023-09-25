@@ -1,10 +1,13 @@
 import React from 'react'
 
+//  renderiza las vistas de errores o exitos 
 //  falta agregar una propiedad opcional que indigue si el mensaje va a ser estatico o no
-function ClientErrors({isconexion,statuscode,textmessage}) {
+function ClientErrors({isconexion=false,statuscode,textmessage}) {
   return (
-    <>                          aqui iria el componente del error especifico
-    {statuscode===2000 && isconexion === false ? <div>{textmessage}</div> : null}
+    <>                          
+    {statuscode===200 && isconexion === false ? <div>{textmessage}</div> : null}
+
+    {statuscode===404 && isconexion === false ? <div>{textmessage}</div> : null}
 
     </>
   )
