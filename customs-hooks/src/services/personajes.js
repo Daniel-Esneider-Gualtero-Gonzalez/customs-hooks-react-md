@@ -6,7 +6,7 @@ import { getErrorMessage } from "../errors/errors";
 export const getAllcharacter = async ()=>{
   
     try {
-        const getCharacters = await fetch(`${baseUrl}characters`)
+        const getCharacters = await fetch(`${baseUrl}character`)
         
         // si es diferente de 200 lanzamos una exepcion  con estos datos para
         //  tomar decisiones en donde se llama esta funcion

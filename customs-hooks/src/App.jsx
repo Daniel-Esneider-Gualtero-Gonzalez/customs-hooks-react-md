@@ -1,15 +1,20 @@
 import React from "react"
-import { useCharactes } from "./hooks/hooksCharacters"
+import { useAuthenticUser } from "./hooks/userAuthentic"
 import ClientErrors from "./errors/ClientErrors"
+import Forbidden from "./components/errors/Forbidden"
 
 function App() {
-  const {loading,error,characters}=useCharactes()
+  const {loading,error,user}=useAuthenticUser()
   
 
   return (
     <>
-    {error ? <ClientErrors statuscode={error.statuscode} textmessage={error.message}/> : null}
+    {error ? <ClientErrors isconexion={error.isconection ? error.isconection: false} statuscode={error.statuscode} /> : null}
      {loading ?  <div>CARGANDO</div> : null}
+
+     {user ? console.log(user) : null}
+
+      
     </>
   )
 }
