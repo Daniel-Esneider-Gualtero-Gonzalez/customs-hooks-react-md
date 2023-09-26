@@ -15,7 +15,7 @@ export const userAuth = async ()=>{
              method : 'POST',
             body: JSON.stringify(data),
         })
-        console.log(authUser)
+        
 
         if(!authUser.ok) {
             const error = {statuscode:authUser.status, message:getErrorMessage(authUser.status)}

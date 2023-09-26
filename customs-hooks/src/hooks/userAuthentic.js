@@ -19,6 +19,10 @@ export const useAuthenticUser = ()=>{
         
     }
 
+    const reload = ()=>{
+        return authUser()
+    }
+
     useEffect(()=>{
 
         authUser()
@@ -27,7 +31,7 @@ export const useAuthenticUser = ()=>{
     
 
     return {
-        loading,error,user
+        loading,error,user,reload
     }
 
 }
