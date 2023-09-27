@@ -1,5 +1,5 @@
-import React from "react"
-import { useAuthenticUser } from "./hooks/userAuthentic"
+import React ,{ useState}from "react"
+import { usePokemonsDito } from "./hooks/usePokemonstDito"
 import ClientErrors from "./errors/ClientErrors"
 import Loading from "./components/common/Loading"
 import TempMessages from "./components/TempMessages"
@@ -7,7 +7,12 @@ import TempMessages from "./components/TempMessages"
 import SideBar from "./components/SideBar"
 
 function App() {
-  const {loading,error,user,reload}=useAuthenticUser()
+  const {loading,error,pokemons}=usePokemonsDito()
+  const [filter,setFilter] = useState(null)
+
+  const pokeFilterName = pokemons ? pokemons.results.filter(poke=>poke.name.includes(filter)) : null
+  
+
   
 
   return (
@@ -15,13 +20,27 @@ function App() {
     {/* {error ? <ClientErrors isconexion={error.isconection ? error.isconection: false} statuscode={error.statuscode} /> : null}
      {loading ?  <Loading /> : null}
 
-     {user ? console.log(user) : null}
+     {pokemons ? console.log(pokemons) : null} */}
 
-     {user && !error ? <TempMessages textmessage={"login exitoso"} /> : null}
+     <input className='border mb-3 mt-3' onChange={(e)=>{
+       setFilter(e.target.value)
+      }}/>  
+    <div className='flex flex-wrap'>
+     
+     {pokemons && !filter ? pokemons.results.map(poke=>{
+       return <span className='border px-2'>{poke.name}</span>
+     })   : pokemons ?  pokeFilterName.map(poke=>{
 
-     {error  ? <button onClick={()=> reload()}>intentar de nuevo</button> : null} */}
+       return <span className='border px-2'>{poke.name}</span>
 
-    <SideBar />
+    }) : null} 
+     </div>
+
+     
+
+     
+
+    {/* <SideBar /> */}
       
     </>
   )
