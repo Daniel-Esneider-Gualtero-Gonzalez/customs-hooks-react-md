@@ -1,5 +1,6 @@
 import React ,{ useState}from "react"
-import { usePokemonsDito } from "./hooks/usePokemonstDito"
+import { useRickyMorty } from "./hooks/useRickyMorty"
+import RenderDataRickiandMorty from "./components/RenderDataRickiandMorty"
 import ClientErrors from "./errors/ClientErrors"
 import Loading from "./components/common/Loading"
 import TempMessages from "./components/TempMessages"
@@ -7,40 +8,46 @@ import TempMessages from "./components/TempMessages"
 import SideBar from "./components/SideBar"
 
 function App() {
-  const {loading,error,pokemons}=usePokemonsDito()
-  const [filter,setFilter] = useState(null)
+  const {loading,error,data}=useRickyMorty()
+  const [searchName,setSearchName] = useState("")
+  const [gender,setGender] = useState("")
+  const misFilters = {name: e=> e.toLowerCase().includes(searchName.toLowerCase())}
 
-  const pokeFilterName = pokemons ? pokemons.results.filter(poke=>poke.name.includes(filter)) : null
+  if(gender){
+    misFilters.gender = e=>e.toLowerCase() == gender 
+  }else{
+
+    delete misFilters.gender
+  }
+
+  console.log("misfilter",misFilters)
+  
   
 
   
 
   return (
     <>
-    {/* {error ? <ClientErrors isconexion={error.isconection ? error.isconection: false} statuscode={error.statuscode} /> : null}
+    {error ? <ClientErrors isconexion={error.isconection ? error.isconection: false} statuscode={error.statuscode} /> : null}
      {loading ?  <Loading /> : null}
 
-     {pokemons ? console.log(pokemons) : null} */}
+     {data ? console.log(data) : null}
 
-     <input className='border mb-3 mt-3' onChange={(e)=>{
-       setFilter(e.target.value)
-      }}/>  
-    <div className='flex flex-wrap'>
-     
-     {pokemons && !filter ? pokemons.results.map(poke=>{
-       return <span className='border px-2'>{poke.name}</span>
-     })   : pokemons ?  pokeFilterName.map(poke=>{
+     <div className="mb-3 mt-3">
+       <span onClick={()=>setGender("male")}>MALE</span>
+       <span className="mx-3" onClick={()=>setGender("female")}>FEMALE</span>
+       <span className="mx-3" onClick={()=>setGender("")}>VACIAR FILTRO POR GENERO</span>
 
-       return <span className='border px-2'>{poke.name}</span>
-
-    }) : null} 
      </div>
-
+    
      
+     <input className='border mb-3 mt-3' onChange={(e)=>{
+       setSearchName(e.target.value.toLowerCase())
+      }}/>  
 
-     
+      {data ? <RenderDataRickiandMorty filters={misFilters}  datalist={data.results} />: null}
 
-    {/* <SideBar /> */}
+   
       
     </>
   )

@@ -8,7 +8,7 @@ function TempMessages({textmessage}) {
     },[])
   return (
     <>
-    {show ? <div className='rounded w-[210px] h-[70px] border border-black absolute right-2 top-2'>{textmessage}</div> : null}
+    {show ? <span className='rounded w-[210px] h-[70px] border border-black absolute right-2 top-2'>{textmessage}</span> : null}
     </>
   )
 }
