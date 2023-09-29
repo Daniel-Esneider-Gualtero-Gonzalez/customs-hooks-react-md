@@ -1,4 +1,4 @@
-
+import CardRickAndMorty from './CardRickAndMorty'
 import { filterArraysProps } from "../utils/filters"
 
 function RenderDataRickiandMorty({filters,datalist}) {
@@ -7,11 +7,9 @@ function RenderDataRickiandMorty({filters,datalist}) {
 
   return (
     <>
-    {data.map(perso=>{
-        return <div>name:{perso.name} "status": {perso.status},
-        "species": {perso.species},
-        "type": {perso.type},
-        "gender": {perso.gender}</div>
+    {data.map(character=>{
+      
+        return <CardRickAndMorty image={character.image} name={character.name} status={character.status} species={character.species} type={character.type} gender={character.gender}/>
     })}
     </>
   )

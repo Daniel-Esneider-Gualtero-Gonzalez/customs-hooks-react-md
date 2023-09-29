@@ -5,7 +5,9 @@ import ClientErrors from "./errors/ClientErrors"
 import Loading from "./components/common/Loading"
 import TempMessages from "./components/TempMessages"
 
-import SideBar from "./components/SideBar"
+import SideBarFilterDataRicky from "./components/SideBarFilterDataRicky"
+import InputSearch from "./components/InputSearch"
+import CardRickAndMorty from "./components/CardRickAndMorty"
 
 function App() {
   const {loading,error,data}=useRickyMorty()
@@ -39,27 +41,34 @@ function App() {
 
      {data ? console.log(data) : null}
 
-     <div className="mb-3 mt-3 border py-2 px-10 bg-gray-50">
-       <span onClick={()=>setGender("male")}>MALE</span>
-       <span className="mx-3" onClick={()=>setGender("female")}>FEMALE</span>
-       <span className="mx-3" onClick={()=>setGender("")}>VACIAR FILTRO POR GENERO</span>
-
-     </div>
-
-     <div className="mb-3 mt-3">
-       <span onClick={()=>setStatus("alive")}>ALIVE</span>
-       <span className="mx-3" onClick={()=>setStatus("dead")}>DEAD</span>
-       <span className="mx-3" onClick={()=>setStatus("unknown")}>UNKNOW</span>
-       <span className="mx-3" onClick={()=>setStatus("")}>VACIAR FILTRO POR ESTADO</span>
-
-     </div>
-    
      
-     <input className='border mb-3 mt-3' onChange={(e)=>{
-       setSearchName(e.target.value.toLowerCase())
-      }}/>  
+     
 
-      {data ? <RenderDataRickiandMorty filters={misFilters}  datalist={data.results} />: null}
+      <div className="border border-black sm:grid grid-cols-5 gap-1 py-1 px-1">
+        
+      <div className=" border  sm:col-span-2 md:col-span-1 h-fit">
+        <SideBarFilterDataRicky />
+      </div>
+      
+        <div className=" border h-fit  sm:col-span-3 md:col-span-4">
+
+          <div className="py-2 w-auto">
+          <InputSearch className='border mx-auto flex py-1 px-1 rounded sm:w-[230px] md:w-[240px] lg:w-[280px] xl:w-[310px] 2xl:w-[340px]' />
+          </div>
+          
+            
+         
+         <section className="w-auto border flex flex-wrap justify-center">
+         {data ? <RenderDataRickiandMorty filters={misFilters}  datalist={data.results} />: null}
+         </section>
+         
+        </div>
+      </div>
+
+      
+
+      
+
 
    
       
