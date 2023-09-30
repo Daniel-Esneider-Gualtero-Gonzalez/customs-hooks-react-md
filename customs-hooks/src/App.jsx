@@ -9,6 +9,8 @@ import SideBarFilterDataRicky from "./components/SideBarFilterDataRicky"
 import InputSearch from "./components/InputSearch"
 import CardRickAndMorty from "./components/CardRickAndMorty"
 
+import NoResultsMessage from "./components/NoResultsMessage"
+
 function App() {
   const {loading,error,data}=useRickyMorty()
   const [searchName,setSearchName] = useState("")
@@ -44,16 +46,16 @@ function App() {
      
      
 
-      <div className="border border-black sm:grid grid-cols-5 gap-1 py-1 px-1">
+      <div className="border bg-gray-900 border-black sm:grid grid-cols-5 md:h-screen  gap-1 py-1 px-1">
         
       <div className=" border  sm:col-span-2 md:col-span-1 h-fit">
-        <SideBarFilterDataRicky />
+        <SideBarFilterDataRicky setFilGender={setGender} setFilStatus={setStatus} />
       </div>
       
         <div className=" border h-fit  sm:col-span-3 md:col-span-4">
 
-          <div className="py-2 w-auto">
-          <InputSearch className='border mx-auto flex py-1 px-1 rounded sm:w-[230px] md:w-[240px] lg:w-[280px] xl:w-[310px] 2xl:w-[340px]' />
+          <div className="py-5 w-auto">
+          <InputSearch onChange={(e)=>setSearchName(e.target.value)} className='shadow-starwark  mx-auto flex py-1 px-1 rounded sm:w-[230px] md:w-[240px] lg:w-[280px] xl:w-[310px] 2xl:w-[340px]' />
           </div>
           
             
@@ -65,8 +67,11 @@ function App() {
         </div>
       </div>
 
+
       
 
+      
+    
       
 
 
