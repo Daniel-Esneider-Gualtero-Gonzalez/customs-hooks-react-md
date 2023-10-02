@@ -6,7 +6,7 @@ function CardRickAndMorty({image,name,status,species,type="desconocido",gender})
   // validaciones para aplicar estilos dinamicamente
   
   const STYLESSTATUS = `${status}`.toLowerCase() === "alive".toLowerCase() ? 'shadow-alive': `${status}`.toLowerCase() === "dead".toLowerCase() ? 'shadow-dead' : 'shadow-desconocido'
-  const STYLESGENDER = `${gender}`.toLowerCase() === "female".toLowerCase() ? <BsGenderFemale className='text-pink-600 mx-auto mt-2 text-xl' /> : <BsGenderMale  className='text-blue-600 mx-auto mt-2 text-xl'/>
+  const STYLESGENDER = `${gender}`.toLowerCase() === "female".toLowerCase() ? <BsGenderFemale className='text-pink-600 mx-auto mt-2 text-2xl' /> : <BsGenderMale  className='text-blue-600 mx-auto mt-2 text-2xl'/>
  
   return (
     <div className='bg-blue-400 bg-opacity-20 m-2 text-white flex justify-center border border-black w-[420px] sm:w-[450px] hover:scale-105  rounded py-2 px-2'>

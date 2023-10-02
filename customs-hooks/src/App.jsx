@@ -10,6 +10,7 @@ import InputSearch from "./components/InputSearch"
 import CardRickAndMorty from "./components/CardRickAndMorty"
 
 import NoResultsMessage from "./components/NoResultsMessage"
+import Pagination from "./components/Pagination"
 
 function App() {
   const {loading,error,data}=useRickyMorty()
@@ -46,7 +47,7 @@ function App() {
      
      
 
-      <div className="border bg-gray-900 border-black sm:grid grid-cols-5 md:h-screen  gap-1 py-1 px-1">
+      <div className="border bg-gray-900 border-black sm:grid grid-cols-5   gap-1 py-1 px-1">
         
       <div className=" border  sm:col-span-2 md:col-span-1 h-fit">
         <SideBarFilterDataRicky setFilGender={setGender} setFilStatus={setStatus} />
@@ -66,6 +67,12 @@ function App() {
          
         </div>
       </div>
+
+
+
+
+
+      <Pagination />
 
 
       
