@@ -11,7 +11,7 @@ function RenderDataRickiandMorty({filters,datalist}) {
     
     {data.length > 0  ===true ?  data.map(character=>{
       
-      return <CardRickAndMorty image={character.image} name={character.name} status={character.status} species={character.species} type={character.type} gender={character.gender}/>
+      return <CardRickAndMorty key={character.id} image={character.image} name={character.name} status={character.status} species={character.species} type={character.type} gender={character.gender}/>
     })
     
     :

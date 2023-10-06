@@ -13,7 +13,9 @@ import NoResultsMessage from "./components/NoResultsMessage"
 import Pagination from "./components/Pagination"
 
 function App() {
-  const {loading,error,data}=useRickyMorty()
+  const [page,setPage] = useState(1)
+  const {loading,error,data,cantPages}=useRickyMorty(page)
+ 
   const [searchName,setSearchName] = useState("")
   const [gender,setGender] = useState("")
   const [status,setStatus] = useState("")
@@ -30,8 +32,6 @@ function App() {
   }else{
     delete misFilters.status
   }
-
-  console.log("misfilter",misFilters)
   
   
 
@@ -39,10 +39,10 @@ function App() {
 
   return (
     <>
+    {data ? console.log(data) : null}
     {error ? <ClientErrors isconexion={error.isconection ? error.isconection: false} statuscode={error.statuscode} /> : null}
-     {loading ?  <Loading /> : null}
+     
 
-     {data ? console.log(data) : null}
 
      
      
@@ -50,7 +50,7 @@ function App() {
       <div className="border bg-gray-900 border-black sm:grid grid-cols-5   gap-1 py-1 px-1">
         
       <div className=" border  sm:col-span-2 md:col-span-1 h-fit">
-        <SideBarFilterDataRicky setFilGender={setGender} setFilStatus={setStatus} />
+       {loading ? <Loading />  :  <SideBarFilterDataRicky setFilGender={setGender} setFilStatus={setStatus} />}
       </div>
       
         <div className=" border h-fit  sm:col-span-3 md:col-span-4">
@@ -62,27 +62,13 @@ function App() {
             
          
          <section className="w-auto border flex flex-wrap justify-center">
-         {data ? <RenderDataRickiandMorty filters={misFilters}  datalist={data.results} />: null}
+         {data && loading===false ? <RenderDataRickiandMorty filters={misFilters}  datalist={data.results} /> : <Loading />  }
          </section>
+
+         <Pagination cantItems={cantPages} page={page} setPage={setPage} />
          
         </div>
       </div>
-
-
-
-
-
-      <Pagination />
-
-
-      
-
-      
-    
-      
-
-
-   
       
     </>
   )
