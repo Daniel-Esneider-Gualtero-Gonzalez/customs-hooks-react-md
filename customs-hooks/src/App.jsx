@@ -12,6 +12,8 @@ import CardRickAndMorty from "./components/CardRickAndMorty"
 import NoResultsMessage from "./components/NoResultsMessage"
 import Pagination from "./components/Pagination"
 
+import SideBarUserProfile from "./components/SideBarUserProfile"
+
 function App() {
   const [page,setPage] = useState(1)
   const {loading,error,data,cantPages}=useRickyMorty(page)
@@ -44,7 +46,7 @@ function App() {
      
 
 
-     
+     {/* <SideBarUserProfile /> */}
      
 
       <div className="border bg-gray-900 border-black sm:grid grid-cols-5   gap-1 py-1 px-1">
